@@ -1,4 +1,4 @@
-# WC PTT Kargo
+# Woocommerce PTT Kargo Entegrasyon Eklentisi
 
 > WooCommerce siparişlerini PTT Kargo'nun SOAP servisleri üzerinden işleyen, barkod üreten ve 80mm termal etiket basan ücretsiz WordPress eklentisi.
 
@@ -21,7 +21,7 @@ Türkiye'de WordPress + WooCommerce kullanan e-ticaret siteleri için PTT Kargo 
 - **80mm termal yazıcı** için hazır etiket (Code128 SVG, 13 haneli barkod + alıcı/gönderici) - Herhangi bir 80mm barkod yazıcısı uygundur.
 - **Toplu etiket** bastırma — tek HTML, sayfalar arası page-break
 - **Sigorta (Değerli Kargo)** her sipariş için manuel toggle (DK ek hizmet kodu)
-- **Kapıda Ödeme (COD)** WC ödeme yöntemleriyle eşleştirme (UA + OS otomatik)
+- **Kapıda Ödeme (COD)** Woocommerce ödeme yöntemleriyle eşleştirme (UA + OS otomatik)
 - **Farklı iade adresi** opsiyonu
 - **Eksik müşteri bilgisi** yakalama + popup ile manuel doldurma
 - **AES-256-CBC** şifrelenmiş PTT şifre saklama (WordPress `AUTH_KEY` tabanlı)
@@ -47,7 +47,7 @@ PTT entegrasyon süreci ve gereken belgeler için PTT Başmüdürlüğünüzden 
 3. Eklentiyi etkinleştirin.
 4. Sol menüde **PTT Kargo → Ayarlar** sayfasını açarak kuruluma başlayabilirsiniz.
 
-## Kurulum Ayalarınız
+## Kurulum Ayarlarınız
 
 Ayarlar 7 sekmeden oluşuyor.
 
@@ -55,12 +55,12 @@ Ayarlar 7 sekmeden oluşuyor.
 - **Ortam**: önce *Test* aşamasında başlamanız gerekmektedir, bir sipariş için kargo barkodu oluşturduktan sonra PTT entegrasyon ekibine mail atarak onay almanız gerekir. Onaydan sonra *Canlı* kısmına geçebilirsiniz.
 - **Müşteri Numarası**: PTT'nin entegrasyon için size verdiği numerik ID.
 - **Şifre**: Aynı entegrasyon için PTT tarafından verilen şifre. AES-256-CBC ile şifrelenip saklanır.
-- **Bağlantıyı Test Et** butonuyla credential'ları kaydetmeden doğrulayabilirsiniz.
+- **Bağlantıyı Test Et** butonuyla girdiğiniz bilgieri PTT'ye bir test göndererek doğrulayabilirsiniz.
 
 ### Barkod
 - **Prefix**: PTT'nin tahsis ettiği 8 haneli sabit ön ek (örn. `27918802`).
 - **Seri Numara Aralığı**: PTT tarafından size tahsis edilen başlangıç–bitiş (örn. `0000` – `9999`).
-- **Müşteri Referans Öneki**: sipariş ID'sinin önüne eklenecek prefix (opsiyonel).
+- **Müşteri Referans Öneki**: sipariş ID'sinin önüne eklenecek prefixtir. Boş burakabilirsiniz.
 
 > 13. hane check digit'tir, otomatik hesaplanır (PTT'nin 1,3,1,3,… algoritması).
 
@@ -79,7 +79,7 @@ Tüm gönderici bilgileri burada bulunur — etikette ve PTT envelope'unda kulla
 ### Ürün & Filtreler
 - **Kapsama alınacak ürünler**: bu ürünleri içeren siparişler "Kargo Siparişleri"
   listesinde görünür. Boş bırakılırsa tüm siparişler kapsam içine alınır.
-- **Sipariş durumları**: hangi WC durumundaki siparişlerin listeleneceğini seçebilirsiniz.
+- **Sipariş durumları**: hangi Woocommerce durumundaki siparişlerin listeleneceğini seçebilirsiniz.
 
 ### Gönderi Varsayılanları
 - **Ağırlık kaynağı**: `Sabit varsayılan`, `WC ürün ağırlığı`, ya da `WC ürün ağırlığı + fallback`.
@@ -89,7 +89,7 @@ Tüm gönderici bilgileri burada bulunur — etikette ve PTT envelope'unda kulla
   UA = Ücreti Alıcıdan, vb.). Birleştirme örneği: `DKUA`.
 
 ### Ödeme
-- **Kapıda Ödeme yöntemleri**: hangi WC payment method ID'lerinin "kapıda ödeme"
+- **Kapıda Ödeme yöntemleri**: hangi Woocommerce ödeme yöntemi ID'lerinin "kapıda ödeme"
   sayılacağını seçebilirsiniz. İşaretlenen yöntemlerle yapılan siparişler PTT'ye iletilirken otomatik olarak
   `odemesekli=UA`, `odeme_sart_ucreti=<sipariş toplamı>`, `ekhizmet`'e `OS` eklenir.
 - **Sigorta ek hizmet kodu**: varsayılan `DK`. Sigorta her sipariş için popup'tan
